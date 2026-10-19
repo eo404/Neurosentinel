@@ -1,0 +1,19 @@
+{
+  "project": "NeuroSentinel",
+  "current_completed_phase": 5,
+  "current_completed_phase_title": "Decoder and Utility-Label Generation",
+  "current_phase_status": "COMPLETED",
+  "next_phase": 7,
+  "next_phase_title": "Non-Causal Gate Baseline",
+  "next_phase_status": "READY_TO_START",
+  "phase5_status_file": "/content/gdrive/MyDrive/NeuroSentinel/implementation_checkpoints/phase5_final_status_202609.json",
+  "phase5_readable_status_file": "/content/gdrive/MyDrive/NeuroSentinel/implementation_checkpoints/phase5_final_status_202609.txt",
+  "phase7_handoff_file": "/content/gdrive/MyDrive/NeuroSentinel/implementation_checkpoints/PHASE7_HANDOFF.json",
+  "last_updated": "2026-10-01T18:50:21.884959",
+  "do_not_modify": [
+    "Phase 6 subject split",
+    "Phase 5H.3 normalization",
+    "Phase 5H.7 utility-label definition",
+    "Phase 5H.7 utility labels"
+  ]
+}

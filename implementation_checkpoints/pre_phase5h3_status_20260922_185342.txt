@@ -1,0 +1,79 @@
+
+============================================================
+NEUROSENTINEL — PRE-PHASE 5H.3 IMPLEMENTATION CHECKPOINT
+============================================================
+
+Created:
+2026-09-22 18:53:42
+
+STATUS
+------
+Phase 0                  : COMPLETE
+Phase 1                  : COMPLETE
+Phase 2                  : COMPLETE
+Phase 3                  : COMPLETE
+Phase 4                  : COMPLETE
+Phase 5 Batch Generation : COMPLETE
+Phase 5 Decoder          : VALIDATED / COLLAPSE DIAGNOSED
+Phase 6 Subject Split    : COMPLETE
+
+PHASE 5 BATCH
+-------------
+Recordings               : 62
+Successful               : 62
+Failed                   : 0
+Subjects                 : 20
+Total windows            : 150,955
+Skipped windows          : 0
+Channels                 : 61
+Samples per window       : 25
+Sampling rate            : 50 Hz
+
+FROZEN SPLIT
+------------
+Train recordings        : 41
+Validation recordings    : 9
+Test recordings          : 12
+
+Train indexed windows   : 99,837
+Validation windows       : 21,206
+Test windows             : 29,907
+
+PHASE 5 DECODER
+---------------
+Architecture             : SimpleConvTimeAgg + Linear(2048,29)
+Input                    : 61 x 25
+Embedding                : 2048
+Classes                  : 29
+
+Test accuracy            : 0.130605
+Test loss                : 2.939201
+
+Collapse diagnosis:
+The decoder predicted class 8 (<space>) for all test windows.
+
+Utility-label generation:
+BLOCKED pending decoder validation.
+
+PHASE 5H.3
+-----------
+Status                   : PAUSED BEFORE TRAINING
+Planned epochs           : 15
+Batch size               : 64
+Learning rate            : 5e-5
+Weight decay             : 0.01
+Normalization            : Channel-wise per-window z-score
+Seed                     : 42
+
+GPU status:
+GPU quota exhausted.
+Training should resume on CUDA.
+
+IMPORTANT
+---------
+Existing validated checkpoints were NOT modified.
+
+Next step:
+Resume Phase 5H.3 when CUDA GPU access is available.
+
+============================================================

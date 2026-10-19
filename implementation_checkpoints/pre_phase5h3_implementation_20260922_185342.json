@@ -1,0 +1,163 @@
+{
+  "checkpoint": {
+    "project": "NeuroSentinel",
+    "checkpoint_type": "PRE_PHASE_5H.3_IMPLEMENTATION",
+    "status": "PAUSED_BEFORE_PHASE_5H.3",
+    "timestamp": "2026-09-22 18:53:42",
+    "validated_phases": {
+      "phase_0": "COMPLETE",
+      "phase_1": "COMPLETE",
+      "phase_2": "COMPLETE",
+      "phase_3": "COMPLETE",
+      "phase_4": "COMPLETE",
+      "phase_5_batch_window_generation": "COMPLETE",
+      "phase_5_decoder_validation": "COMPLETE_WITH_COLLAPSE_DIAGNOSIS",
+      "phase_6_subject_split": "COMPLETE"
+    },
+    "phase_5_batch_generation": {
+      "recordings": 62,
+      "successful_recordings": 62,
+      "failed_recordings": 0,
+      "subjects": 20,
+      "total_windows": 150955,
+      "skipped_windows": 0,
+      "channels": 61,
+      "samples_per_window": 25,
+      "sampling_rate": 50,
+      "window_start_seconds": -0.2,
+      "window_duration_seconds": 0.5
+    },
+    "frozen_subject_split": {
+      "train_subjects": [
+        "003",
+        "004",
+        "005",
+        "006",
+        "009",
+        "010",
+        "012",
+        "013",
+        "014",
+        "015",
+        "016",
+        "017",
+        "019",
+        "022"
+      ],
+      "validation_subjects": [
+        "007",
+        "018",
+        "020"
+      ],
+      "test_subjects": [
+        "002",
+        "011",
+        "021"
+      ],
+      "train_recordings": 41,
+      "validation_recordings": 9,
+      "test_recordings": 12,
+      "train_windows_indexed": 99837,
+      "validation_windows": 21206,
+      "test_windows": 29907
+    },
+    "phase_5_decoder_status": {
+      "architecture": "SimpleConvTimeAgg + Linear(2048,29)",
+      "input_shape": "61 x 25",
+      "embedding": 2048,
+      "classes": 29,
+      "meG_merger": "disabled",
+      "original_decoder_checkpoint": "No validated pretrained Brain2Qwerty EEG checkpoint established",
+      "test_accuracy": 0.130605,
+      "test_loss": 2.939201,
+      "collapse_diagnosis": "Model predicted class 8 (<space>) for all test windows",
+      "utility_labels": "BLOCKED_PENDING_DECODER_VALIDATION"
+    },
+    "phase_5h3_status": {
+      "status": "NOT_COMPLETED",
+      "experiment": "Controlled longer normalized decoder training",
+      "planned_epochs": 15,
+      "batch_size": 64,
+      "learning_rate": 5e-05,
+      "weight_decay": 0.01,
+      "normalization": "channel-wise per-window z-score",
+      "seed": 42,
+      "current_gpu_status": "GPU quota exhausted",
+      "training_status": "PAUSED_BEFORE_TRAINING"
+    }
+  },
+  "important_artifacts": [
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase1_dataset_verification.json",
+      "exists": true,
+      "size_bytes": 1072,
+      "sha256": "d49a9a3bddba2586c98ad2ed409d7dc4e53aec661b7668d916eac0863927a2b1"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase2_checkpoint.json",
+      "exists": true,
+      "size_bytes": 1187,
+      "sha256": "1f18af36523d28c9c4559ceed1db9e5464aa2848379a289ee2b03da71f6caf83"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase3_checkpoint.json",
+      "exists": true,
+      "size_bytes": 1375,
+      "sha256": "e9f2fb5f19e421f834b26d5fbf4ab62a05624e71067ee8f6b237f235553e0613"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase4_checkpoint.json",
+      "exists": true,
+      "size_bytes": 673,
+      "sha256": "d91d4e2bbcacf65f8c707fa3e6b4be2ebe9ce2f460f6238218d34123f36e69db"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5_batch_checkpoint.json",
+      "exists": true,
+      "size_bytes": 550,
+      "sha256": "fd5b8ed81ce31337f1e35561cadfedd08189d404c30e2473d9f93e8c01ad5f78"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5_decoder_best.pt",
+      "exists": true,
+      "size_bytes": 1102997729,
+      "sha256": "a7ddcd975099ffeb8779dc6f8829f967bafce5c6c1ef66a23c50df19e8cd625e"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase6_subject_split_checkpoint.json",
+      "exists": true,
+      "size_bytes": 773,
+      "sha256": "d578f80a44542e6052d790adb43153156fe6bb1991a2ceba158c12eb24f9e1a2"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/07_phase6_subject_split/phase6_subject_split_manifest.csv",
+      "exists": true,
+      "size_bytes": 13475,
+      "sha256": "879fd4fd13435c28735952702ed8789cacffa26171468a4ce0ee793ee10d6fac"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/07_phase6_subject_split/phase6_subject_split.json",
+      "exists": true,
+      "size_bytes": 390,
+      "sha256": "fc7315ebd6c12627a380adbdc7d9855039be62c25c53944feca7ae071863d6af"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5_decoder_training_history.csv",
+      "exists": true,
+      "size_bytes": 842,
+      "sha256": "9056bf59234c9266828fe75f04c70a6f1c2779a7141ec8b30ba0b3957f326483"
+    },
+    {
+      "path": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5_decoder_test_results.json",
+      "exists": true,
+      "size_bytes": 387,
+      "sha256": "74a20e5eb82ae42eafb5f3a662385a62132c68825d0e31dc57665582abcb2069"
+    }
+  ],
+  "next_step": "Resume Phase 5H.3 on CUDA when GPU access is available.",
+  "do_not_modify": [
+    "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5_decoder_best.pt",
+    "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5_batch_checkpoint.json",
+    "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase6_subject_split_checkpoint.json"
+  ]
+}

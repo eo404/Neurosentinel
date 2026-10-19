@@ -1,0 +1,94 @@
+{
+  "project": "NeuroSentinel",
+  "previous_phase": {
+    "phase": 5,
+    "title": "Decoder and Utility-Label Generation",
+    "status": "COMPLETED",
+    "frozen": true
+  },
+  "next_phase": {
+    "phase": 7,
+    "title": "Non-Causal Gate Baseline",
+    "status": "READY_TO_START"
+  },
+  "input": {
+    "shape": [
+      61,
+      25
+    ],
+    "normalization": "per-window channel-wise z-score"
+  },
+  "target": {
+    "name": "utility_label",
+    "type": "binary",
+    "0": "LOW utility",
+    "1": "HIGH utility",
+    "definition": "1 if decoder prediction equals true label; 0 otherwise"
+  },
+  "dataset": {
+    "train": 99837,
+    "validation": 21206,
+    "test": 29907,
+    "total": 150950
+  },
+  "class_distribution": {
+    "train_high": 18622,
+    "train_low": 81215,
+    "validation_high": 2946,
+    "validation_low": 18260,
+    "test_high": 4497,
+    "test_low": 25410
+  },
+  "subject_split": {
+    "train": [
+      "003",
+      "004",
+      "005",
+      "006",
+      "009",
+      "010",
+      "012",
+      "013",
+      "014",
+      "015",
+      "016",
+      "017",
+      "019",
+      "022"
+    ],
+    "validation": [
+      "007",
+      "018",
+      "020"
+    ],
+    "test": [
+      "002",
+      "011",
+      "021"
+    ]
+  },
+  "rules": [
+    "Do not change Phase 6 subject split.",
+    "Do not regenerate Phase 5 utility labels.",
+    "Do not tune on test data.",
+    "Use validation data for model selection.",
+    "Use validation data for threshold selection.",
+    "Freeze threshold before test evaluation.",
+    "Evaluate test only after all choices are frozen."
+  ],
+  "recommended_metrics": [
+    "balanced_accuracy",
+    "precision",
+    "recall",
+    "f1",
+    "AUROC",
+    "AUPRC",
+    "accuracy",
+    "confusion_matrix"
+  ],
+  "comparison_ready": true,
+  "future_phase": {
+    "phase": 8,
+    "title": "Causal Gate"
+  }
+}

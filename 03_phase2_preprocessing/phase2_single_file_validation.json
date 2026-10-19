@@ -1,0 +1,16 @@
+{
+    "channel_count": 61,
+    "sampling_rate": 50.0,
+    "duration_seconds": 903.9,
+    "data_shape": [
+        61,
+        45196
+    ],
+    "contains_nan": false,
+    "contains_inf": false,
+    "min_amplitude": -0.0012386902420073926,
+    "max_amplitude": 0.0033537801690569622,
+    "mean_amplitude": -1.223322071023837e-07,
+    "std_amplitude": 4.866107531683673e-05,
+    "annotation_count": 2387
+}

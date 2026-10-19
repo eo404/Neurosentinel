@@ -1,0 +1,416 @@
+{
+  "project": "NeuroSentinel",
+  "phase": "Phase 5",
+  "phase_title": "Decoder and Utility-Label Generation",
+  "status": "COMPLETED",
+  "completion_state": "FROZEN_FOR_PHASE_7",
+  "completion_timestamp": "2026-10-01T18:50:21.820323",
+  "dataset": {
+    "name": "SpanishBCBL",
+    "subjects": 20,
+    "recordings": 62,
+    "channels": 61,
+    "sampling_rate_hz": 50,
+    "samples_per_window": 25,
+    "window_duration_seconds": 0.5,
+    "input_shape": [
+      61,
+      25
+    ],
+    "original_windows": 150955,
+    "valid_utility_samples": 150950,
+    "excluded_anomalous_samples": 5
+  },
+  "decoder": {
+    "implementation": "SimpleConvTimeAggModel",
+    "package": "neuraltrain",
+    "input_channels": 61,
+    "time_samples": 25,
+    "embedding_dimension": 2048,
+    "num_classes": 29,
+    "class_mapping": {
+      "0-25": "a-z",
+      "26": "<space>",
+      "27": "<number>",
+      "28": "<special>"
+    },
+    "normalization": "per-window channel-wise z-score",
+    "config": {
+      "hidden": 64,
+      "depth": 4,
+      "kernel_size": 5,
+      "dilation_growth": 2,
+      "merger_config": null,
+      "initial_linear": 61,
+      "backbone_out_channels": 2048,
+      "time_agg_out": "att",
+      "n_time_groups": null,
+      "output_head_config": null
+    }
+  },
+  "initial_decoder_diagnosis": {
+    "status": "FAILED_DUE_TO_SINGLE_CLASS_COLLAPSE",
+    "test_samples": 29907,
+    "test_loss": 2.939201,
+    "test_accuracy": 0.130605,
+    "correct": 3906,
+    "incorrect": 26001,
+    "mean_confidence": 0.081926,
+    "median_confidence": 0.081924,
+    "prediction_behavior": "All 29,907 test predictions were class 8 (<space>).",
+    "train_space_rate": 0.1318,
+    "validation_space_rate": 0.1294,
+    "test_space_rate": 0.1306
+  },
+  "normalized_decoder_training": {
+    "phase": "5H.3",
+    "epochs": 15,
+    "batch_size": 8,
+    "learning_rate": 5e-05,
+    "weight_decay": 0.01,
+    "seed": 42,
+    "normalization": "per-window channel-wise z-score",
+    "hardware": {
+      "gpu": "Tesla T4",
+      "vram_gb": 14.56,
+      "pytorch": "2.11.0+cu128"
+    },
+    "valid_train_samples": 99837,
+    "validation_samples": 21206,
+    "test_samples": 29907,
+    "best_epoch": 3,
+    "best_validation_loss": 2.688227078065348,
+    "epoch_results": [
+      {
+        "epoch": 1,
+        "train_loss": 2.7022,
+        "train_accuracy": 0.1525,
+        "validation_loss": 2.6909,
+        "validation_accuracy": 0.1308
+      },
+      {
+        "epoch": 2,
+        "train_loss": 2.641,
+        "train_accuracy": 0.1724,
+        "validation_loss": 2.7001,
+        "validation_accuracy": 0.1313
+      },
+      {
+        "epoch": 3,
+        "train_loss": 2.6173,
+        "train_accuracy": 0.1782,
+        "validation_loss": 2.6882,
+        "validation_accuracy": 0.1389
+      }
+    ]
+  },
+  "normalized_decoder_test": {
+    "phase": "5H.4",
+    "test_samples": 29907,
+    "excluded_samples": 2,
+    "test_loss": 2.766961,
+    "test_accuracy": 0.15037,
+    "mean_confidence": 0.172282,
+    "median_confidence": 0.16367,
+    "correct_mean_confidence": 0.179757,
+    "incorrect_mean_confidence": 0.17096,
+    "confidence_separation": 0.008797,
+    "unique_predicted_classes": 10,
+    "total_classes": 29,
+    "dominant_space_count": 12160,
+    "dominant_space_percentage": 0.40659,
+    "single_class_collapse": false,
+    "combined_a_space_prediction_percentage": 0.7463,
+    "classes_never_predicted": 19
+  },
+  "utility_validation": {
+    "phase": "5H.5",
+    "test_loss": 2.766961,
+    "accuracy": 0.15037,
+    "balanced_accuracy": 0.047328,
+    "macro_f1": 0.029963,
+    "weighted_f1": 0.08915,
+    "mean_confidence": 0.172282,
+    "median_confidence": 0.16367,
+    "correct_mean_confidence": 0.179757,
+    "incorrect_mean_confidence": 0.17096,
+    "confidence_separation": 0.008797,
+    "ece": 0.021948,
+    "unique_predicted_classes": 10,
+    "total_classes": 29
+  },
+  "test_confidence_thresholds": [
+    {
+      "threshold": 0.1,
+      "coverage": 0.99809,
+      "accuracy": 0.15045
+    },
+    {
+      "threshold": 0.15,
+      "coverage": 0.65423,
+      "accuracy": 0.16166
+    },
+    {
+      "threshold": 0.2,
+      "coverage": 0.20985,
+      "accuracy": 0.19248
+    },
+    {
+      "threshold": 0.25,
+      "coverage": 0.05865,
+      "accuracy": 0.22235
+    },
+    {
+      "threshold": 0.3,
+      "coverage": 0.01521,
+      "accuracy": 0.26374
+    },
+    {
+      "threshold": 0.35,
+      "coverage": 0.00398,
+      "accuracy": 0.26891
+    },
+    {
+      "threshold": 0.4,
+      "coverage": 0.00074,
+      "accuracy": 0.18182
+    },
+    {
+      "threshold": 0.45,
+      "coverage": 7e-05,
+      "accuracy": 0.0
+    },
+    {
+      "threshold": 0.5,
+      "coverage": 3e-05,
+      "accuracy": 0.0
+    }
+  ],
+  "validation_utility_calibration": {
+    "phase": "5H.6",
+    "validation_samples": 21206,
+    "excluded_samples": 0,
+    "validation_loss": 2.688249,
+    "accuracy": 0.13892,
+    "balanced_accuracy": 0.045304,
+    "macro_f1": 0.031613,
+    "weighted_f1": 0.094341,
+    "mean_confidence": 0.171686,
+    "median_confidence": 0.162854,
+    "correct_mean_confidence": 0.175088,
+    "incorrect_mean_confidence": 0.171137,
+    "confidence_separation": 0.003951,
+    "ece": 0.032801,
+    "unique_predicted_classes": 10,
+    "total_classes": 29,
+    "dominant_space_percentage": 0.38687,
+    "confidence_threshold_decision": "NO_CONFIDENCE_THRESHOLD_FROZEN"
+  },
+  "final_utility_definition": {
+    "status": "FROZEN",
+    "rule": "utility_label = 1 if decoder prediction == true label; otherwise utility_label = 0",
+    "positive_label": "HIGH utility",
+    "negative_label": "LOW utility",
+    "confidence_used_for_label": false,
+    "confidence_retained_as_metadata": true,
+    "interpretation": "Operational decoder correctness utility: whether the current downstream decoder correctly predicts the EEG window."
+  },
+  "final_utility_statistics": {
+    "total_samples": 150950,
+    "train": {
+      "samples": 99837,
+      "high": 18622,
+      "low": 81215,
+      "high_rate": 0.18652
+    },
+    "validation": {
+      "samples": 21206,
+      "high": 2946,
+      "low": 18260,
+      "high_rate": 0.13892
+    },
+    "test": {
+      "samples": 29907,
+      "high": 4497,
+      "low": 25410,
+      "high_rate": 0.15037
+    },
+    "combined": {
+      "high": 26065,
+      "low": 124885,
+      "high_rate": 0.17266,
+      "low_rate": 0.82734
+    },
+    "confidence_by_utility": {
+      "utility_0_mean": 0.170035,
+      "utility_0_median": 0.161568,
+      "utility_1_mean": 0.182752,
+      "utility_1_median": 0.171624
+    }
+  },
+  "utility_rate_by_class": {
+    "a": 0.4192,
+    "b": 0.0,
+    "c": 0.0088,
+    "d": 0.0,
+    "e": 0.1946,
+    "f": 0.0,
+    "g": 0.0,
+    "h": 0.0,
+    "i": 0.0013,
+    "j": 0.0,
+    "k": 0.0,
+    "l": 0.3013,
+    "m": 0.0,
+    "n": 0.021,
+    "o": 0.0298,
+    "p": 0.0005,
+    "q": 0.0,
+    "r": 0.0,
+    "s": 0.0366,
+    "t": 0.0002,
+    "u": 0.0,
+    "v": 0.0,
+    "w": 0.0,
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0,
+    "<space>": 0.5432,
+    "<number>": 0.0,
+    "<special>": 0.0
+  },
+  "recording_level_utility_rates": {
+    "train_range": [
+      0.1479,
+      0.2203
+    ],
+    "validation_range": [
+      0.1131,
+      0.1658
+    ],
+    "test_range": [
+      0.0981,
+      0.1849
+    ]
+  },
+  "frozen_subject_split": {
+    "train_subjects": [
+      "003",
+      "004",
+      "005",
+      "006",
+      "009",
+      "010",
+      "012",
+      "013",
+      "014",
+      "015",
+      "016",
+      "017",
+      "019",
+      "022"
+    ],
+    "validation_subjects": [
+      "007",
+      "018",
+      "020"
+    ],
+    "test_subjects": [
+      "002",
+      "011",
+      "021"
+    ],
+    "subject_overlap": false,
+    "recordings": {
+      "train": 41,
+      "validation": 9,
+      "test": 12
+    }
+  },
+  "limitations": [
+    "Decoder test accuracy is 15.037%.",
+    "Decoder balanced accuracy is 4.733%.",
+    "Only 10 of 29 classes were predicted.",
+    "19 of 29 classes were never predicted.",
+    "Combined 'a' and '<space>' predictions account for 74.63%.",
+    "Utility labels are dependent on the current decoder.",
+    "Utility labels inherit decoder class biases.",
+    "Confidence separation between correct and incorrect predictions is weak.",
+    "No confidence threshold was frozen."
+  ],
+  "phase7_handoff": {
+    "next_phase": "Phase 7",
+    "title": "Non-Causal Gate Baseline",
+    "status": "READY_TO_START",
+    "objective": "Train and evaluate a non-causal binary gate that predicts whether an EEG window has HIGH or LOW decoder utility.",
+    "input_shape": [
+      61,
+      25
+    ],
+    "target": "utility_label",
+    "classes": {
+      "0": "LOW utility",
+      "1": "HIGH utility"
+    },
+    "frozen_train_samples": 99837,
+    "frozen_validation_samples": 21206,
+    "frozen_test_samples": 29907,
+    "train_high_rate": 0.18652,
+    "validation_high_rate": 0.13892,
+    "test_high_rate": 0.15037,
+    "requirements": [
+      "Use the frozen Phase 6 subject split.",
+      "Use the frozen Phase 5H.3 normalization.",
+      "Use the frozen Phase 5H.7 utility labels.",
+      "Do not regenerate utility labels.",
+      "Do not change the subject split.",
+      "Do not use test data for model selection.",
+      "Train a binary non-causal gate.",
+      "Handle HIGH/LOW class imbalance.",
+      "Select the model using validation data only.",
+      "Select the decision threshold using validation data only.",
+      "Freeze the selected threshold before test evaluation.",
+      "Evaluate the test set only after model and threshold are frozen."
+    ],
+    "primary_metrics": [
+      "balanced_accuracy",
+      "precision",
+      "recall",
+      "f1",
+      "AUROC",
+      "AUPRC"
+    ],
+    "additional_metrics": [
+      "accuracy",
+      "confusion_matrix",
+      "HIGH_utility_precision",
+      "HIGH_utility_recall"
+    ],
+    "future_comparison": "Phase 7 non-causal gate will later be compared against the Phase 8 causal gate using the same data, labels, split, and evaluation protocol."
+  },
+  "frozen_for_phase7": [
+    "Phase 6 subject split",
+    "Phase 5H.3 normalization method",
+    "29-class decoder mapping",
+    "Phase 5H.7 utility-label rule",
+    "Phase 5H.7 utility labels",
+    "Phase 5 decoder checkpoint",
+    "Phase 5 utility statistics"
+  ],
+  "artifacts": {
+    "phase5_decoder_checkpoint": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5_decoder_best.pt",
+    "phase5h3_decoder_checkpoint": "/content/gdrive/MyDrive/NeuroSentinel/checkpoints/phase5h3/phase5h3_best.pt",
+    "phase5_training_history": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5_decoder_training_history.csv",
+    "phase5h4_test_results": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h3/phase5h4_test_results.json",
+    "phase5h5_results": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h5",
+    "phase5h6_results": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h6",
+    "phase5h7_results": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h7",
+    "phase5h7_utility_manifest": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h7/phase5h7_utility_label_manifest.csv",
+    "phase5h7_utility_statistics": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h7/phase5h7_utility_statistics.csv",
+    "phase5h7_recording_statistics": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h7/phase5h7_recording_statistics.csv",
+    "phase5h7_summary": "/content/gdrive/MyDrive/NeuroSentinel/results/phase5h7/phase5h7_utility_label_summary.json",
+    "phase6_split_manifest": "/content/gdrive/MyDrive/NeuroSentinel/07_phase6_subject_split/phase6_subject_split_manifest.csv",
+    "phase6_split_json": "/content/gdrive/MyDrive/NeuroSentinel/07_phase6_subject_split/phase6_subject_split.json",
+    "phase5_recordings_directory": "/content/gdrive/MyDrive/NeuroSentinel/06_phase5_utility_labels/recordings"
+  }
+}

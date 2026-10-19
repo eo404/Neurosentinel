@@ -1,0 +1,237 @@
+
+============================================================
+NeuroSentinel — PHASE 5 IMPLEMENTATION STATUS
+============================================================
+
+Phase:
+    Phase 5 — Decoder and Utility-Label Generation
+
+Status:
+    COMPLETED
+
+Frozen for:
+    Phase 7 — Non-Causal Gate Baseline
+
+Completion time:
+    2026-10-01T18:50:21.820323
+
+------------------------------------------------------------
+DATA
+------------------------------------------------------------
+
+Subjects:
+    20
+
+Recordings:
+    62
+
+EEG channels:
+    61
+
+Sampling rate:
+    50 Hz
+
+Samples/window:
+    25
+
+Input shape:
+    61 × 25
+
+Original windows:
+    150,955
+
+Valid utility samples:
+    150,950
+
+Excluded anomalous samples:
+    5
+
+------------------------------------------------------------
+DECODER
+------------------------------------------------------------
+
+Decoder:
+    SimpleConvTimeAggModel
+
+Embedding:
+    2048
+
+Classes:
+    29
+
+Normalization:
+    Per-window channel-wise z-score
+
+------------------------------------------------------------
+NORMALIZED DECODER RESULTS
+------------------------------------------------------------
+
+Best validation loss:
+    2.688227078065348
+
+Best epoch:
+    3
+
+Test loss:
+    2.766961
+
+Test accuracy:
+    15.037%
+
+Balanced accuracy:
+    4.733%
+
+Macro F1:
+    2.996%
+
+Weighted F1:
+    8.915%
+
+Mean confidence:
+    0.172282
+
+Median confidence:
+    0.163670
+
+Correct mean confidence:
+    0.179757
+
+Incorrect mean confidence:
+    0.170960
+
+Confidence separation:
+    0.008797
+
+ECE:
+    0.021948
+
+Unique predicted classes:
+    10 / 29
+
+Classes never predicted:
+    19 / 29
+
+Combined 'a' + '<space>' predictions:
+    74.63%
+
+------------------------------------------------------------
+FINAL UTILITY LABEL
+------------------------------------------------------------
+
+Rule:
+
+    HIGH = decoder prediction == true label
+    LOW  = decoder prediction != true label
+
+Confidence threshold:
+    NOT USED
+
+Confidence:
+    Retained as metadata
+
+------------------------------------------------------------
+UTILITY DATASET
+------------------------------------------------------------
+
+Total:
+    150,950
+
+Train:
+    99,837
+    HIGH = 18,622
+    LOW  = 81,215
+    HIGH rate = 18.652%
+
+Validation:
+    21,206
+    HIGH = 2,946
+    LOW  = 18,260
+    HIGH rate = 13.892%
+
+Test:
+    29,907
+    HIGH = 4,497
+    LOW  = 25,410
+    HIGH rate = 15.037%
+
+Combined:
+    HIGH = 26,065
+    LOW  = 124,885
+    HIGH rate = 17.266%
+
+------------------------------------------------------------
+FROZEN SUBJECT SPLIT
+------------------------------------------------------------
+
+Train:
+    003, 004, 005, 006, 009, 010, 012,
+    013, 014, 015, 016, 017, 019, 022
+
+Validation:
+    007, 018, 020
+
+Test:
+    002, 011, 021
+
+Subject overlap:
+    NONE
+
+------------------------------------------------------------
+PHASE 5 LIMITATIONS
+------------------------------------------------------------
+
+1. Decoder test accuracy = 15.037%.
+2. Decoder balanced accuracy = 4.733%.
+3. Only 10/29 classes were predicted.
+4. 19/29 classes were never predicted.
+5. 'a' + '<space>' = 74.63% of predictions.
+6. Utility labels are decoder-dependent.
+7. Utility labels inherit decoder class bias.
+8. Confidence separation is weak.
+9. No confidence threshold was frozen.
+
+------------------------------------------------------------
+PHASE 7 HANDOFF
+------------------------------------------------------------
+
+Next:
+    Phase 7 — Non-Causal Gate Baseline
+
+Input:
+    61 × 25 EEG
+
+Target:
+    utility_label
+
+HIGH:
+    1
+
+LOW:
+    0
+
+Training samples:
+    99,837
+
+Validation samples:
+    21,206
+
+Test samples:
+    29,907
+
+Requirements:
+    - Preserve frozen subject split.
+    - Preserve Phase 5H.3 normalization.
+    - Preserve Phase 5H.7 utility labels.
+    - Do not regenerate utility labels.
+    - Do not use test data for model selection.
+    - Train a binary non-causal gate.
+    - Handle class imbalance.
+    - Select model on validation data.
+    - Select threshold on validation data.
+    - Freeze model and threshold before test evaluation.
+    - Report balanced accuracy, precision, recall, F1,
+      AUROC, AUPRC, accuracy and confusion matrix.
+
+============================================================
+END OF PHASE 5 STATUS
+============================================================
